@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Persons</title>
+    <style type="text/css" media="screen"> /* Se agrega una hoja de estilo*/
+        body {font-family: Arial, Helvetica, sans-serif;}
+        table {
+            font-family: "Roboto", "Lucida Grande", Sans-Serif; 
+            font-size: 12px;    
+            margin: 45px;     
+            width: 480px; 
+            text-align: left;    
+            border-collapse: collapse;
+        }
+        th {
+            font-size: 13px;     
+            font-weight: bolder;     
+            padding: 8px;     
+            background: #135a09;
+            border-top: 4px solid #ffffff;    
+            border-bottom: 1px solid #fff; 
+            color: rgb(255, 255, 255); 
+        }
+        td {    
+            padding: 8px;     
+            background: #bac8ff;     
+            border-bottom: 1px solid #fff;
+            color: rgb(0, 0, 0);    
+            border-top: 1px solid transparent; 
+        }
+        tr:hover td {
+            background: #12ffd7; 
+            color: rgb(0, 0, 0); 
+        }
+    </style>
+</head>
+<body>
+    <h1>Listado de personas</h1>
+    <div id="tabla">
+        <table>
+        <tr>  <!-- Se crea la tabla y los encabezados -->
+            <th>NSS</th>
+            <th>Nombre</th>
+            <th>Edad</th>
+            <th>Tipo de sangre</th>
+        </tr>
+
+    <% Object.keys(persons).forEach(function(prop) { %>
+        <tr> 
+            <td><%- persons[prop].nss%></td>
+            <td><%- persons[prop].nombre%></td>
+            <td><%- persons[prop].edad%></td>
+            <td><%- persons[prop].tipoSangre%></td>
+            <td><a href="<%= `deletePerson/${persons[prop]._id}` %>">Delete</a></td>
+            <td><a href="<%= `findById/${persons[prop]._id}` %>">Update</a></td>
+        </tr>
+    <%}); %>
+        </table>
+    </div>
+
+    <br> <!--Regresar a la página principal-->
+    <a href="/">Back</a>
+</body>
+</html>
